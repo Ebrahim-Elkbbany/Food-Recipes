@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/helpers/cache_helper.dart';
+import 'package:food_recipes/core/helpers/extensions.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
+import 'package:food_recipes/core/routing/routes.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/custom_button.dart';
 
@@ -35,12 +38,19 @@ class OnboardingView extends StatelessWidget {
               CustomButton(
                 buttonName: 'Start Cooking',
                 width: 243.w,
-                // onPressed: () {
-                //   context.pushNamedAndRemoveUntil(
-                //     Routes.loginView,
-                //     predicate: (route) => false,
-                //   );
-                // },
+                onPressed: () {
+                  CacheHelper.saveData(
+                    key: 'onBoarding',
+                    value: true,
+                  ).then((value) {
+                    if (value == true) {
+                      context.pushNamedAndRemoveUntil(
+                        Routes.loginView,
+                        predicate: (route) => false,
+                      );
+                    }
+                  });
+                },
               ),
               verticalSpacer(50),
             ],

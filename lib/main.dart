@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/bloc_observer.dart';
+import 'package:food_recipes/core/di/dependency_injection.dart';
+import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/core/routing/app_router.dart';
 import 'package:food_recipes/core/theming/app_theme.dart';
 import 'core/routing/routes.dart';
@@ -10,10 +12,12 @@ import 'firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = AppBlocObserver();
+  setUpGetIt();
   await ScreenUtil.ensureScreenSize();
   runApp(const FoodRecipesApp());
 }
@@ -28,7 +32,7 @@ class FoodRecipesApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: Routes.initialScreen,
         onGenerateRoute: AppRouter().generateRoute,
       ),
     );
