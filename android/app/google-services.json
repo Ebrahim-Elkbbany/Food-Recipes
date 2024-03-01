@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "810969299708",
+    "project_id": "food-recipe-78668",
+    "storage_bucket": "food-recipe-78668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810969299708:android:49b49e3f4a0e019e6db579",
+        "android_client_info": {
+          "package_name": "com.example.food_recipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810969299708-gev1mne0t23lk0sc9sf8kktgve38hmo3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_recipe",
+            "certificate_hash": "9d5b3ecc0952527dfa90ebf722c9f1e7b9ccf732"
+          }
+        },
+        {
+          "client_id": "810969299708-4ktpv0771vvfqtg8q7mlth16feucqo6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUMKiXiNgIwDDEj_CeyV8PDBjhW1F0hXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810969299708-4ktpv0771vvfqtg8q7mlth16feucqo6e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "810969299708-k2cjg52bua3v69bqvjdjg59g5sbb14cv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodRecipe"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810969299708:android:de902eb9d9c67a5f6db579",
+        "android_client_info": {
+          "package_name": "com.example.food_recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810969299708-1r4d02t5io02jirnj4iv8avakk51qh4p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_recipes",
+            "certificate_hash": "9d5b3ecc0952527dfa90ebf722c9f1e7b9ccf732"
+          }
+        },
+        {
+          "client_id": "810969299708-4ktpv0771vvfqtg8q7mlth16feucqo6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUMKiXiNgIwDDEj_CeyV8PDBjhW1F0hXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810969299708-4ktpv0771vvfqtg8q7mlth16feucqo6e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "810969299708-k2cjg52bua3v69bqvjdjg59g5sbb14cv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodRecipe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
