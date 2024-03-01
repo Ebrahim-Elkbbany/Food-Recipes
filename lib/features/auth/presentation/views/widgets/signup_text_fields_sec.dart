@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/core/helpers/app_regex.dart';
+import 'package:food_recipes/core/helpers/responsive_spacing.dart';
+import 'package:food_recipes/core/theming/font_styles.dart';
+import 'package:food_recipes/core/widgets/custom_text_form_field.dart';
+import '../../manager/signup_cubit/signup_cubit.dart';
+
+class SignupTextFieldSec extends StatelessWidget {
+  const SignupTextFieldSec({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+  builder: (context, state) {
+    return Form(
+      key: context.read<SignupCubit>().formKey,
+      child:  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Name',
+            style: FontStyles.font14Black12Regular,
+          ),
+          verticalSpacer(5),
+          AppTextFormField(
+            controller: context.read<SignupCubit>().name,
+            hintText: 'Enter Name',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter password';
+              }
+            },
+          ),
+          verticalSpacer(20),
+          Text(
+            'Email',
+            style: FontStyles.font14Black12Regular,
+          ),
+          verticalSpacer(5),
+          AppTextFormField(
+            controller:  context.read<SignupCubit>().email,
+            hintText: 'Enter Email',
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isEmailValid(value)) {
+                return 'Please enter a valid email';
+              }
+            },
+          ),
+          verticalSpacer(30),
+          Text(
+            'Enter Password',
+            style: FontStyles.font14Black12Regular,
+          ),
+          verticalSpacer(5),
+          AppTextFormField(
+            controller:  context.read<SignupCubit>().password,
+            hintText: 'Enter Password',
+            isObscureText: context.read<SignupCubit>().isPassword,
+            suffixIcon: context.read<SignupCubit>().suffix,
+            suffixIconTap: () {
+              context.read<SignupCubit>().changePasswordVisibility();
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter password';
+              }
+            },
+          ),
+          verticalSpacer(20),
+          Text(
+            'Confirm Password',
+            style: FontStyles.font14Black12Regular,
+          ),
+          verticalSpacer(5),
+          AppTextFormField(
+            controller: context.read<SignupCubit>().confirmPassword,
+            hintText: 'Retype Password',
+            isObscureText: context.read<SignupCubit>().isPassword,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter password';
+              }else if(context.read<SignupCubit>().confirmPassword.text != context.read<SignupCubit>().password.text ){
+                return 'Passwords are not same';
+              }
+            },
+          ),
+        ],
+
+      ),
+    );
+  },
+);
+  }
+}
