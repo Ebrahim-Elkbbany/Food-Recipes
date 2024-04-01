@@ -10,7 +10,7 @@ import 'package:food_recipes/features/auth/presentation/manager/login_cubit/logi
 import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:food_recipes/features/auth/presentation/views/login_view.dart';
 import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart';
-import 'package:food_recipes/features/home_view.dart';
+import 'package:food_recipes/features/home/presentation/views/home_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
 
 class AppRouter {

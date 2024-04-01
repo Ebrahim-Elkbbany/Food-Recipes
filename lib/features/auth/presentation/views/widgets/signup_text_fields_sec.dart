@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipes/core/helpers/app_regex.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
+import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/custom_text_form_field.dart';
+import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 
 class SignupTextFieldSec extends StatelessWidget {
@@ -11,6 +13,7 @@ class SignupTextFieldSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightTheme =ThemeCubit.get(context).isLightTheme;
     return BlocBuilder<SignupCubit, SignupState>(
   builder: (context, state) {
     return Form(
@@ -20,7 +23,9 @@ class SignupTextFieldSec extends StatelessWidget {
         children: [
           Text(
             'Name',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+              color: isLightTheme? null :AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           AppTextFormField(
@@ -35,7 +40,9 @@ class SignupTextFieldSec extends StatelessWidget {
           verticalSpacer(20),
           Text(
             'Email',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null :AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           AppTextFormField(
@@ -52,7 +59,9 @@ class SignupTextFieldSec extends StatelessWidget {
           verticalSpacer(30),
           Text(
             'Enter Password',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null :AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           AppTextFormField(
@@ -72,7 +81,9 @@ class SignupTextFieldSec extends StatelessWidget {
           verticalSpacer(20),
           Text(
             'Confirm Password',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null :AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           AppTextFormField(

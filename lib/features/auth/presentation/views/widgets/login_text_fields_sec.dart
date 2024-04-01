@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipes/core/helpers/app_regex.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
+import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/custom_text_form_field.dart';
 import 'package:food_recipes/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class LoginTextFieldSec extends StatelessWidget {
   const LoginTextFieldSec({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isLightTheme =ThemeCubit.get(context).isLightTheme;
     return Form(
       key: context.read<LoginCubit>().formKey,
       child: Column(
@@ -18,7 +21,9 @@ class LoginTextFieldSec extends StatelessWidget {
         children: [
           Text(
             'Email',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null : AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           AppTextFormField(
@@ -35,7 +40,9 @@ class LoginTextFieldSec extends StatelessWidget {
           verticalSpacer(30),
           Text(
             'Enter Password',
-            style: FontStyles.font14Black12Regular,
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null : AppColors.kWhiteColor
+            ),
           ),
           verticalSpacer(5),
           BlocBuilder<LoginCubit, LoginState>(
