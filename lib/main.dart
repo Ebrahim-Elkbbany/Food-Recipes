@@ -37,8 +37,8 @@ class FoodRecipesApp extends StatelessWidget {
           builder: (context, state) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: context
-                  .read<ThemeCubit>()
+              theme: ThemeCubit
+                  .get(context)
                   .isLightTheme ? lightTheme : darkTheme,
               initialRoute: Routes.initialScreen,
               onGenerateRoute: AppRouter().generateRoute,

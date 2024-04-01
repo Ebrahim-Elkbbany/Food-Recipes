@@ -4,7 +4,7 @@ import 'package:food_recipes/core/helpers/app_regex.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
-import 'package:food_recipes/core/widgets/custom_text_form_field.dart';
+import 'package:food_recipes/core/widgets/app_text_form_field.dart';
 import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 

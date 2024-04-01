@@ -12,6 +12,7 @@ import 'package:food_recipes/features/auth/presentation/views/login_view.dart';
 import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart';
 import 'package:food_recipes/features/home/presentation/views/home_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
+import 'package:food_recipes/layout/layout_view.dart';
 
 class AppRouter {
   dynamic onBoarding = CacheHelper.getData(key: 'onBoarding');
@@ -27,7 +28,7 @@ class AppRouter {
           builder: (_) => onBoarding != null
               ? (FirebaseAuth.instance.currentUser != null &&
                       FirebaseAuth.instance.currentUser!.emailVerified)
-                  ? const HomeView()
+                  ? const LayoutView()
                   : BlocProvider(
                       create: (context) =>
                           LoginCubit(getIt.get<LoginRepoImpl>()),
