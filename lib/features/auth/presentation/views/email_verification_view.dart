@@ -3,8 +3,13 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/helpers/extensions.dart';
+import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/routing/routes.dart';
+import 'package:food_recipes/core/theming/font_styles.dart';
+
+import '../../../onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key, required this.email});
@@ -58,40 +63,48 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightTheme =ThemeCubit.get(context).isLightTheme;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 35),
-              const SizedBox(height: 30),
-              const Center(
+              verticalSpacer(65),
+               Center(
                 child: Text(
                   'Check your \n Email',
                   textAlign: TextAlign.center,
+                  style: FontStyles.font16WhiteSemiBold.copyWith(
+                    color: isLightTheme ? Colors.black : null,
+                  ),
                 ),
               ),
-              const SizedBox(height: 8),
+              verticalSpacer(8),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding:  EdgeInsets.symmetric(horizontal: 32.0.w),
                 child: Center(
                   child: Text(
                     'We have sent you a Email on  ${widget.email}',
                     textAlign: TextAlign.center,
+                    style: FontStyles.font13WhiteD9Regular
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+             verticalSpacer(16),
               const Center(child: CircularProgressIndicator()),
-              const SizedBox(height: 8),
-              const Padding(
+              verticalSpacer(8),
+               Padding(
                 padding: EdgeInsets
-                    .symmetric(horizontal: 32.0),
-                child: Center(
+                    .symmetric(horizontal: 32.0.w),
+                child:  Center(
                   child: Text(
                     'Verifying email....',
                     textAlign: TextAlign.center,
+                    style: FontStyles.font16WhiteSemiBold.copyWith(
+                      color: isLightTheme ? Colors.black : null,
+                    ),
                   ),
                 ),
               ),

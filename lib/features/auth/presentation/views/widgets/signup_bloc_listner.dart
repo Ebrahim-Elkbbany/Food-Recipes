@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipes/core/helpers/extensions.dart';
-import 'package:food_recipes/core/routing/routes.dart';
 import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import '../../../../../core/theming/app_colors.dart';
 

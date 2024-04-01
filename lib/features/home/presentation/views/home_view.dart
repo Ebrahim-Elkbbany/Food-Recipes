@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../core/routing/routes.dart';
+import '../../../../core/routing/routes.dart';
 // to test
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -28,7 +30,21 @@ class HomeView extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text(user?.displayName ?? ""),
+        child: Column(
+          children: [
+            Text(user?.displayName ?? ""),
+            IconButton(
+              onPressed: () async {
+                context
+                    .read<ThemeCubit>()
+                    .changeTheme();
+              },
+              icon: const Icon(
+                Icons.exit_to_app,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -10,6 +10,12 @@ class FontStyles {
     height: 1.09,
     color: Colors.white,
   );
+  static TextStyle font20WhiteSemiBold = TextStyle(
+    fontWeight: FontWeightHelper.semiBold,
+    fontSize: 50.sp,
+    height: 1.09,
+    color: Colors.white,
+  );
   static TextStyle font16WhiteD9Regular = TextStyle(
     fontWeight: FontWeightHelper.regular,
     fontSize: 16.sp,
@@ -30,19 +36,21 @@ class FontStyles {
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.regular,
   );
-
+  static TextStyle font18Black18SemiBold = TextStyle(
+    color: AppColors.kBlack18Color,
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+  );
   static TextStyle font11kSecondaryColorRegular = TextStyle(
     color: AppColors.kSecondaryColor,
     fontSize: 11.sp,
     fontWeight: FontWeightHelper.regular,
   );
-
   static TextStyle font13Black12Regular = TextStyle(
     color: AppColors.kBlack12Color,
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.medium,
   );
-
   static TextStyle font30BlackSemiBold =TextStyle(
     color: Colors.black,
     fontSize: 30.sp,
@@ -53,7 +61,6 @@ class FontStyles {
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
   );
-
   static TextStyle font11WhiteD9Medium =TextStyle(
     color: AppColors.kWhiteColorD9,
     fontSize: 11.sp,

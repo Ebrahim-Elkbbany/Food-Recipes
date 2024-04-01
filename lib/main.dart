@@ -6,11 +6,12 @@ import 'package:food_recipes/core/di/dependency_injection.dart';
 import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/core/routing/app_router.dart';
 import 'package:food_recipes/core/theming/app_theme.dart';
+import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import 'core/routing/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   await Firebase.initializeApp(
@@ -24,16 +25,26 @@ void main() async{
 
 class FoodRecipesApp extends StatelessWidget {
   const FoodRecipesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return  ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        initialRoute: Routes.initialScreen,
-        onGenerateRoute: AppRouter().generateRoute,
+      child: BlocProvider(
+        create: (context) => ThemeCubit(),
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: context
+                  .read<ThemeCubit>()
+                  .isLightTheme ? lightTheme : darkTheme,
+              initialRoute: Routes.initialScreen,
+              onGenerateRoute: AppRouter().generateRoute,
+            );
+          },
+        ),
       ),
     );
   }
