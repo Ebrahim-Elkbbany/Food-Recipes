@@ -14,13 +14,16 @@ class AppTextFormField extends StatelessWidget {
   final bool? isObscureText;
   final IconData? suffixIcon;
   final Color? backgroundColor;
+  final Color? suffixIconColor;
   final TextEditingController? controller;
-  final Function(String?) validator;
+  final Function(String?) ?validator;
   final Function()? suffixIconTap;
+  final double? suffixIconSize ;
 
   const AppTextFormField({
     super.key,
     this.contentPadding,
+    this.suffixIconSize,
     this.focusedBorder,
     this.enabledBorder,
     this.inputTextStyle,
@@ -30,8 +33,8 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    required this.validator,
-    this.suffixIconTap,
+     this.validator,
+    this.suffixIconTap, this.suffixIconColor,
   });
 
   @override
@@ -40,7 +43,7 @@ class AppTextFormField extends StatelessWidget {
       controller: controller,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical:19.h,horizontal: 20.w),
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(vertical:19.h,horizontal: 20.w),
         isDense: true,
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
@@ -78,7 +81,8 @@ class AppTextFormField extends StatelessWidget {
           onTap: suffixIconTap,
           child: Icon(
             suffixIcon,
-            color: AppColors.kPrimaryColor,
+            size: suffixIconSize,
+            color: suffixIconColor ??AppColors.kPrimaryColor,
           ),
         ),
         fillColor: backgroundColor ?? Colors.white,
@@ -88,7 +92,7 @@ class AppTextFormField extends StatelessWidget {
       style: FontStyles.font13Black12Regular,
       cursorColor:    AppColors.kPrimaryColor,
       validator: (value) {
-        return validator(value);
+        return validator!(value) ;
       },
     );
   }

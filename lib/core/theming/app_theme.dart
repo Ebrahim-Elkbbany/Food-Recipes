@@ -18,7 +18,7 @@ ThemeData lightTheme = ThemeData(
       type: BottomNavigationBarType.fixed,
       backgroundColor: AppColors.kWhiteColor,
       selectedItemColor: AppColors.kPrimaryColor,
-      elevation: 2,
+      elevation: 10,
       unselectedItemColor: AppColors.kWhiteColorD9,
     ),
     appBarTheme: AppBarTheme(
