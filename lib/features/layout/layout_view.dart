@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/core/theming/app_colors.dart';
+import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import 'manager/layout_cubit.dart';
 
 class LayoutView extends StatelessWidget {
@@ -8,7 +10,11 @@ class LayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
+    var isLightTheme=ThemeCubit.get(context).isLightTheme;
+    SystemChrome.setSystemUIOverlayStyle(isLightTheme ? SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor:  AppColors.kWhiteColor,
+    ) :SystemUiOverlayStyle.light
+        .copyWith(statusBarColor: AppColors.kBlackColor));
     return BlocProvider(
       create: (context) => LayoutCubit(),
       child: BlocBuilder<LayoutCubit, LayoutState>(

@@ -52,7 +52,9 @@ ThemeData darkTheme = ThemeData(
       unselectedItemColor: AppColors.kWhiteColorD9,
     ),
     appBarTheme: AppBarTheme(
-      titleTextStyle: FontStyles.font18Black18SemiBold,
+      titleTextStyle: FontStyles.font18Black18SemiBold.copyWith(
+        color: AppColors.kWhiteColor
+      ),
       centerTitle: true,
       iconTheme: IconThemeData(color: AppColors.kWhiteColor, size: 24.w),
       systemOverlayStyle: const SystemUiOverlayStyle(
