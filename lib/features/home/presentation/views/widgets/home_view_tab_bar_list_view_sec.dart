@@ -78,7 +78,7 @@ class HomeViewTabBarListViewSec extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 12.h),
                     itemBuilder: (context, index) => state
                             is AreaCategoryRecipesSuccess
-                        ? GridViewCard(
+                        ? AppGridViewCard(
                             recipesMeal: cubit.areaCategoryRecipesList[index],
                           )
                         : CustomShimmerForLoading(

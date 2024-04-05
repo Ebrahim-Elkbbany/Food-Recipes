@@ -8,10 +8,10 @@ import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/theming/font_weight_helper.dart';
 
+class AppGridViewCard extends StatelessWidget {
+  const AppGridViewCard({super.key, required this.recipesMeal});
 
-class GridViewCard extends StatelessWidget {
-  const GridViewCard({super.key, required this.recipesMeal});
-  final RecipesMeal recipesMeal ;
+  final RecipesMeal recipesMeal;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,11 @@ class GridViewCard extends StatelessWidget {
           height: 176.h,
           width: 150.w,
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          padding: EdgeInsets.symmetric(
-              vertical: 10.h, horizontal: 10.w),
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           decoration: BoxDecoration(
-            color: isLightTheme ? AppColors.kWhiteColorD9 :AppColors.kWhiteColor,
+            color: isLightTheme
+                ? AppColors.kWhiteColorD9.withOpacity(0.5)
+                : AppColors.kBlack18Color,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(
@@ -38,8 +39,7 @@ class GridViewCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: FontStyles.font16WhiteSemiBold.copyWith(
-                  color:
-                  AppColors.kBlackColor ,
+                  color: isLightTheme ? AppColors.kBlackColor : null,
                 ),
               ),
               const Spacer(),
@@ -50,17 +50,14 @@ class GridViewCard extends StatelessWidget {
                     children: [
                       Text(
                         'Time',
-                        style: FontStyles.font11WhiteD9Medium
-                            .copyWith(
+                        style: FontStyles.font11WhiteD9Medium.copyWith(
                             color: AppColors.kGrayColorA9,
-                            fontWeight:
-                            FontWeightHelper.regular),
+                            fontWeight: FontWeightHelper.regular),
                       ),
                       Text(
-                        '${recipesMeal.idMeal.substring(4) =='0'?'3':recipesMeal.idMeal.substring(4)}0 Mins',
-                        style: FontStyles.font11WhiteD9Medium
-                            .copyWith(
-                            color:AppColors.kBlackColor
+                        '${recipesMeal.idMeal.substring(4) == '0' ? '3' : recipesMeal.idMeal.substring(4)}0 Mins',
+                        style: FontStyles.font11WhiteD9Medium.copyWith(
+                          color: isLightTheme ? AppColors.kBlackColor : null,
                         ),
                       ),
                     ],
@@ -82,7 +79,8 @@ class GridViewCard extends StatelessWidget {
             child: CustomCachedNetworkImage(
               imageUrl: recipesMeal.strMealThumb,
               width: 110.w,
-              height: 110.h,),
+              height: 110.h,
+            ),
           ),
         ),
       ],

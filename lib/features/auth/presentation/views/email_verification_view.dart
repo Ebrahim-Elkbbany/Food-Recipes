@@ -49,7 +49,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       });
       timer?.cancel();
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        context.pushNamedAndRemoveUntil(Routes.homeView, predicate: (route) => false,);
+        context.pushNamedAndRemoveUntil(Routes.layoutView, predicate: (route) => false,);
       });
 
     }

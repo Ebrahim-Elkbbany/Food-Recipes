@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/widgets/app_grid_view.dart';
 import 'package:food_recipes/core/widgets/custom_error_widget.dart';
 import 'package:food_recipes/core/widgets/custom_shimmer_for_loading.dart';
 import 'package:food_recipes/core/widgets/app_grid_view_card.dart';
@@ -27,24 +28,17 @@ class NewRecipesView extends StatelessWidget {
               ),
             );
           } else {
-            return GridView.builder(
+            return AppGridView(
               itemCount: cubit.newRecipesList.isNotEmpty
                   ? cubit.newRecipesList.length
                   : 6,
-              padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 10,
-                childAspectRatio: 115 / 150,
-              ),
-              itemBuilder: (context, index) => state is NewRecipesSuccess
-                  ? GridViewCard(recipesMeal: cubit.newRecipesList[index])
+              itemBuilder:(context, index) =>  state is NewRecipesSuccess
+                  ? AppGridViewCard(recipesMeal: cubit.newRecipesList[index])
                   : CustomShimmerForLoading(
-                      height: 176.h,
-                      width: 150.w,
-                      radius: 12,
-                    ),
+                height: 176.h,
+                width: 150.w,
+                radius: 12,
+              ),
             );
           }
         },
