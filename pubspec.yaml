@@ -40,6 +40,7 @@ dependencies:
   flutter_bloc: ^8.1.4
   # firebase
   awesome_dialog: ^3.2.0
+  carousel_slider: ^4.2.1
   google_sign_in: ^6.2.1
   firebase_auth: ^4.17.5
   firebase_messaging: ^14.7.16
@@ -48,6 +49,11 @@ dependencies:
   firebase_core: ^2.25.4
   dartz: ^0.10.1
   shared_preferences: ^2.2.2
+  dio: ^5.4.2+1
+  shimmer: ^3.0.0
+  cached_network_image: ^3.3.1
+
+
 
 
   # The following adds the Cupertino Icons font to your application.

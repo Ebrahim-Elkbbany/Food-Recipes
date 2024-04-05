@@ -10,9 +10,12 @@ import 'package:food_recipes/features/auth/presentation/manager/login_cubit/logi
 import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:food_recipes/features/auth/presentation/views/login_view.dart';
 import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart';
+import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
+import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
 import 'package:food_recipes/features/home/presentation/views/home_view.dart';
+import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
-import 'package:food_recipes/layout/layout_view.dart';
+import 'package:food_recipes/features/layout/layout_view.dart';
 
 class AppRouter {
   dynamic onBoarding = CacheHelper.getData(key: 'onBoarding');
@@ -36,6 +39,13 @@ class AppRouter {
                     )
               : const OnboardingView(),
         );
+      case Routes.newRecipesView:
+        return  MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+            child: const NewRecipesView(),
+          ),
+        );
       case Routes.loginView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -46,6 +56,10 @@ class AppRouter {
       case Routes.homeView:
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
+        );
+      case Routes.layoutView:
+        return MaterialPageRoute(
+          builder: (context) => const LayoutView(),
         );
       case Routes.signupView:
         return MaterialPageRoute(

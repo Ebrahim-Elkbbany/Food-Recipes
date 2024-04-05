@@ -8,7 +8,7 @@ class LayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle());
     return BlocProvider(
       create: (context) => LayoutCubit(),
       child: BlocBuilder<LayoutCubit, LayoutState>(
