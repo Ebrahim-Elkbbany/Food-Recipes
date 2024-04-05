@@ -10,9 +10,9 @@ import 'package:food_recipes/features/auth/presentation/manager/login_cubit/logi
 import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:food_recipes/features/auth/presentation/views/login_view.dart';
 import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart';
+import 'package:food_recipes/features/category/presentation/views/category_reicpes_view.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
-import 'package:food_recipes/features/home/presentation/views/home_view.dart';
 import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
 import 'package:food_recipes/features/layout/layout_view.dart';
@@ -22,28 +22,28 @@ class AppRouter {
 
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.onBoardingScreen:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingView(),
-        );
       case Routes.initialScreen:
         return MaterialPageRoute(
           builder: (_) => onBoarding != null
               ? (FirebaseAuth.instance.currentUser != null &&
-                      FirebaseAuth.instance.currentUser!.emailVerified)
-                  ? const LayoutView()
-                  : BlocProvider(
-                      create: (context) =>
-                          LoginCubit(getIt.get<LoginRepoImpl>()),
-                      child: const LoginView(),
-                    )
+              FirebaseAuth.instance.currentUser!.emailVerified)
+              ? const LayoutView()
+              : BlocProvider(
+            create: (context) =>
+                LoginCubit(getIt.get<LoginRepoImpl>()),
+            child: const LoginView(),
+          )
               : const OnboardingView(),
         );
-      case Routes.newRecipesView:
-        return  MaterialPageRoute(
+      case Routes.onBoardingScreen:
+        return MaterialPageRoute(
+          builder: (_) => const OnboardingView(),
+        );
+      case Routes.signupView:
+        return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
-            child: const NewRecipesView(),
+            create: (context) => SignupCubit(getIt.get<SignupRepoImpl>()),
+            child: const SignUpView(),
           ),
         );
       case Routes.loginView:
@@ -53,19 +53,22 @@ class AppRouter {
             child: const LoginView(),
           ),
         );
-      case Routes.homeView:
-        return MaterialPageRoute(
-          builder: (context) => const HomeView(),
-        );
       case Routes.layoutView:
         return MaterialPageRoute(
           builder: (context) => const LayoutView(),
         );
-      case Routes.signupView:
-        return MaterialPageRoute(
+      case Routes.newRecipesView:
+        return  MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => SignupCubit(getIt.get<SignupRepoImpl>()),
-            child: const SignUpView(),
+            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+            child: const NewRecipesView(),
+          ),
+        );
+      case Routes.categoryRecipesView:
+        return  MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+            child: const CategoryRecipesView(),
           ),
         );
       default:

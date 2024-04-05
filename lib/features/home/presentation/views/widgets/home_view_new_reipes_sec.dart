@@ -63,7 +63,7 @@ class HomeViewNewRecipesSec extends StatelessWidget {
                 childAspectRatio: 115 / 150,
               ),
               itemBuilder: (context, index) => state is NewRecipesSuccess
-                  ? GridViewCard(recipesMeal: cubit.newRecipesList[index])
+                  ? AppGridViewCard(recipesMeal: cubit.newRecipesList[index])
                   : CustomShimmerForLoading(
                 height: 176.h,
                 width: 150.w,

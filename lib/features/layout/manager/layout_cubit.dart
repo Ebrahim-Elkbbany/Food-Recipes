@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/features/category/presentation/views/all_categories_view.dart';
 import 'package:food_recipes/features/home/presentation/views/home_view.dart';
 part 'layout_state.dart';
 
@@ -14,5 +15,5 @@ class LayoutCubit extends Cubit<LayoutState> {
     currentIndex=index;
     emit(ChangeBottomScreen());
   }
-  List<Widget>bottomScreen=const[HomeView()];
+  List<Widget>bottomScreen=const[HomeView(),AllCategoriesView(),];
 }
