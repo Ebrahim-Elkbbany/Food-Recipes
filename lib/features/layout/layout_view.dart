@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipes/core/di/dependency_injection.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
+import 'package:food_recipes/features/category/data/repo/category_repo_impl.dart';
+import 'package:food_recipes/features/category/presentation/manager/category_cubit/category_cubit.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/area_category_and_recipes_cubit/area_category_and_recipes_cubit.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
@@ -10,41 +12,40 @@ import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubi
 import 'manager/layout_cubit.dart';
 import 'package:food_recipes/features/home/presentation/manager/banners_cubit/banners_cubit.dart';
 
-
 class LayoutView extends StatelessWidget {
   const LayoutView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var isLightTheme = ThemeCubit
-        .get(context)
-        .isLightTheme;
-    SystemChrome.setSystemUIOverlayStyle(
-        isLightTheme ? SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: AppColors.kWhiteColor,
-        ) : SystemUiOverlayStyle.light
+    var isLightTheme = ThemeCubit.get(context).isLightTheme;
+    SystemChrome.setSystemUIOverlayStyle(isLightTheme
+        ? SystemUiOverlayStyle.dark.copyWith(
+            statusBarColor: AppColors.kWhiteColor,
+          )
+        : SystemUiOverlayStyle.light
             .copyWith(statusBarColor: AppColors.kBlackColor));
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) =>
-          BannersCubit(getIt.get<HomeRepoImpl>())
-            ..getBanners(),
+              BannersCubit(getIt.get<HomeRepoImpl>())..getBanners(),
         ),
         BlocProvider(
           create: (context) =>
-          AreaCategoryAndRecipesCubit(getIt.get<HomeRepoImpl>())
-            ..getAreaCategory(),
+              AreaCategoryAndRecipesCubit(getIt.get<HomeRepoImpl>())
+                ..getAreaCategory(),
         ),
         BlocProvider(
-          create: (context) =>
-          NewRecipesCubit(
+          create: (context) => NewRecipesCubit(
             getIt.get<HomeRepoImpl>(),
-          )
-            ..getNewRecipes(),
+          )..getNewRecipes(),
         ),
         BlocProvider(
           create: (context) => LayoutCubit(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              CategoryCubit(getIt.get<CategoryRepoImpl>())..getAllCategories(),
         ),
       ],
       child: BlocBuilder<LayoutCubit, LayoutState>(
@@ -59,21 +60,36 @@ class LayoutView extends StatelessWidget {
               },
               items: [
                 BottomNavigationBarItem(
-                    icon: Icon(cubit.currentIndex == 0 ? Icons.home : Icons
-                        .home_outlined,), label: ''),
+                    icon: Icon(
+                      cubit.currentIndex == 0
+                          ? Icons.home
+                          : Icons.home_outlined,
+                    ),
+                    label: ''),
                 BottomNavigationBarItem(
-                    icon: Icon(cubit.currentIndex == 1 ? Icons.category : Icons
-                        .category_outlined,), label: ''),
+                    icon: Icon(
+                      cubit.currentIndex == 1
+                          ? Icons.category
+                          : Icons.category_outlined,
+                    ),
+                    label: ''),
                 BottomNavigationBarItem(
-                    icon: Icon(cubit.currentIndex == 2 ? Icons.bookmark : Icons
-                        .bookmark_outline,), label: ''),
+                    icon: Icon(
+                      cubit.currentIndex == 2
+                          ? Icons.bookmark
+                          : Icons.bookmark_outline,
+                    ),
+                    label: ''),
                 BottomNavigationBarItem(
-                    icon: Icon(cubit.currentIndex == 3 ? Icons.person : Icons
-                        .person_outlined,), label: ''),
+                    icon: Icon(
+                      cubit.currentIndex == 3
+                          ? Icons.person
+                          : Icons.person_outlined,
+                    ),
+                    label: ''),
               ],
               //
             ),
-
           );
         },
       ),
