@@ -10,6 +10,8 @@ import 'package:food_recipes/features/auth/presentation/manager/login_cubit/logi
 import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:food_recipes/features/auth/presentation/views/login_view.dart';
 import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart';
+import 'package:food_recipes/features/category/data/repo/category_repo_impl.dart';
+import 'package:food_recipes/features/category/presentation/manager/category_cubit/category_cubit.dart';
 import 'package:food_recipes/features/category/presentation/views/category_reicpes_view.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
@@ -65,12 +67,13 @@ class AppRouter {
           ),
         );
       case Routes.categoryRecipesView:
-        return  MaterialPageRoute(
+        final arguments = settings.arguments as String;
+        return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
-            child: const CategoryRecipesView(),
+            create: (context) => CategoryCubit(getIt.get<CategoryRepoImpl>())..getCategoryRecipes(arguments),
+            child: CategoryRecipesView(categoryName: arguments),
           ),
-        );
+        );  
       default:
         return null;
     }

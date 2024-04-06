@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
+import 'package:food_recipes/features/category/data/models/all_categories_model.dart';
 import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class CategoryCardItem extends StatelessWidget {
-  const CategoryCardItem({super.key});
+  const CategoryCardItem({super.key,   required this.category});
+  final Category category ;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +32,11 @@ class CategoryCardItem extends StatelessWidget {
           verticalSpacer(15),
           CachedNetworkImage(
             width: 110.w,
-            imageUrl: 'https://www.themealdb.com/images/category/beef.png',
+            imageUrl: category.strCategoryThumb,
           ),
           verticalSpacer(10),
           Text(
-            'Chicken',
+            category.strCategory,
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,

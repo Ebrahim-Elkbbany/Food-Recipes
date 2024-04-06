@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:food_recipes/core/api_service/api_service.dart';
 import 'package:food_recipes/features/auth/data/repos/login_repo_implemetation.dart';
 import 'package:food_recipes/features/auth/data/repos/sign_up_repo_implementation.dart';
+import 'package:food_recipes/features/category/data/repo/category_repo_impl.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,6 +27,12 @@ Future<void> setUpGetIt() async {
     HomeRepoImpl(
       getIt.get<ApiService>(),
       FirebaseStorage.instance,
+    ),
+  );
+
+  getIt.registerSingleton<CategoryRepoImpl>(
+    CategoryRepoImpl(
+      getIt.get<ApiService>(),
     ),
   );
 }
