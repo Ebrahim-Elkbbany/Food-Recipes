@@ -19,6 +19,10 @@ class AppTextFormField extends StatelessWidget {
   final Function(String?) ?validator;
   final Function()? suffixIconTap;
   final double? suffixIconSize ;
+  final void Function()? onTap;
+  final bool readOnly ;
+  final void Function(String)? onChange;
+
 
   const AppTextFormField({
     super.key,
@@ -34,12 +38,15 @@ class AppTextFormField extends StatelessWidget {
     this.backgroundColor,
     this.controller,
      this.validator,
-    this.suffixIconTap, this.suffixIconColor,
+    this.suffixIconTap, this.suffixIconColor, this.onTap,  this.readOnly = false, this.onChange,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChange,
+      readOnly: readOnly,
+      onTap: onTap,
       controller: controller,
       textAlign: TextAlign.start,
       decoration: InputDecoration(

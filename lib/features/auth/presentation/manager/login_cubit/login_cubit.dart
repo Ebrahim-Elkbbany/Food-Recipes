@@ -57,6 +57,13 @@ class LoginCubit extends Cubit<LoginState> {
     isPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
     emit(ChangePasswordVisibility());
   }
+
+  @override
+  Future<void> close() {
+    email.dispose();
+    password.dispose();
+    return super.close();
+  }
 }
 
 

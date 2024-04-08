@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/helpers/extensions.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
+import 'package:food_recipes/core/routing/routes.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/theming/font_weight_helper.dart';
@@ -58,6 +60,22 @@ class HomeViewHalloSearchSec extends StatelessWidget {
           ],
         ),
         verticalSpacer(20),
+        Padding(
+          padding: EdgeInsets.only(right: 20.w),
+          child: AppTextFormField(
+            readOnly: true,
+            onTap: () {
+              context.pushNamed(Routes.searchRecipesView);
+            },
+            hintText: 'Search recipe',
+            contentPadding:
+            EdgeInsets.symmetric(vertical: 12.h, horizontal: 15.w),
+            suffixIcon: Icons.search,
+            suffixIconColor: AppColors.kGrayColorA9,
+            suffixIconSize: 22.w,
+          ),
+        ),
+        verticalSpacer(20),
         BlocBuilder<BannersCubit, BannersState>(
           builder: (context, state) {
             var cubit = BannersCubit.get(context);
@@ -100,18 +118,6 @@ class HomeViewHalloSearchSec extends StatelessWidget {
                     ),
             );
           },
-        ),
-        verticalSpacer(20),
-        Padding(
-          padding: EdgeInsets.only(right: 20.w),
-          child: AppTextFormField(
-            hintText: 'Search recipe',
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 12.h, horizontal: 15.w),
-            suffixIcon: Icons.search,
-            suffixIconColor: AppColors.kGrayColorA9,
-            suffixIconSize: 22.w,
-          ),
         ),
       ],
     );

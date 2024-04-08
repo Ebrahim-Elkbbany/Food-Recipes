@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_recipes/features/auth/data/repos/signup_repo.dart';
 import 'package:food_recipes/features/auth/presentation/views/email_verification_view.dart';
 
-
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
@@ -42,7 +41,6 @@ class SignupCubit extends Cubit<SignupState> {
     });
   }
 
-
   Future signupWithGoogle(BuildContext context) async {
     emit(SignupLoading());
     var response = await signupRepo.signupWithGoogle();
@@ -59,11 +57,16 @@ class SignupCubit extends Cubit<SignupState> {
   void changePasswordVisibility() {
     isPassword = !isPassword;
     suffix =
-    isPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
+        isPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
     emit(ChangePasswordVisibility());
   }
 
-
-
-
+  @override
+  Future<void> close() {
+    email.dispose();
+    password.dispose();
+    confirmPassword.dispose();
+    name.dispose();
+    return super.close();
+  }
 }

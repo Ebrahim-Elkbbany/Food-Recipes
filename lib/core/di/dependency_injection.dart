@@ -6,6 +6,7 @@ import 'package:food_recipes/features/auth/data/repos/login_repo_implemetation.d
 import 'package:food_recipes/features/auth/data/repos/sign_up_repo_implementation.dart';
 import 'package:food_recipes/features/category/data/repo/category_repo_impl.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
+import 'package:food_recipes/features/search/data/repo/search_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -32,6 +33,12 @@ Future<void> setUpGetIt() async {
 
   getIt.registerSingleton<CategoryRepoImpl>(
     CategoryRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+  getIt.registerSingleton<SearchRepoImpl>(
+    SearchRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

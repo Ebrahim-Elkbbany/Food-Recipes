@@ -18,6 +18,7 @@ import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubi
 import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
 import 'package:food_recipes/features/layout/layout_view.dart';
+import 'package:food_recipes/features/search/presentation/views/search_recipes_view.dart';
 
 class AppRouter {
   dynamic onBoarding = CacheHelper.getData(key: 'onBoarding');
@@ -65,6 +66,10 @@ class AppRouter {
             create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
             child: const NewRecipesView(),
           ),
+        );
+      case Routes.searchRecipesView:
+        return  MaterialPageRoute(
+          builder: (context) => const SearchRecipesView(),
         );
       case Routes.categoryRecipesView:
         final arguments = settings.arguments as String;
