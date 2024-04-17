@@ -49,27 +49,30 @@ class HomeViewNewRecipesSec extends StatelessWidget {
           builder: (context, state) {
             var cubit = NewRecipesCubit.get(context);
             return state is NewRecipesFailure
-                ? CustomErrorWidget(width: 250.w,height: 200,errorMessage: state.errorMessage)
+                ? CustomErrorWidget(
+                    width: 250.w, height: 200, errorMessage: state.errorMessage)
                 : GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 4,
-              padding: EdgeInsets.only(top: 20.h, right: 20.w),
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 10,
-                childAspectRatio: 115 / 150,
-              ),
-              itemBuilder: (context, index) => state is NewRecipesSuccess
-                  ? AppGridViewCard(recipesMeal: cubit.newRecipesList[index])
-                  : CustomShimmerForLoading(
-                height: 176.h,
-                width: 150.w,
-                radius: 12,
-              ),
-            );
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 4,
+                    padding: EdgeInsets.only(top: 20.h, right: 20.w),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 115 / 150,
+                    ),
+                    itemBuilder: (context, index) => state is NewRecipesSuccess
+                        ? AppGridViewCard(
+                            recipesMeal: cubit.newRecipesList[index],
+                          )
+                        : CustomShimmerForLoading(
+                            height: 176.h,
+                            width: 150.w,
+                            radius: 12,
+                          ),
+                  );
           },
         ),
       ],
