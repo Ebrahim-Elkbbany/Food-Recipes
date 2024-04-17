@@ -26,7 +26,6 @@ class SearchRecipeCubit extends Cubit<SearchRecipeState> {
 
     result.fold(
           (error) {
-            print(error.errorMessage);
         emit(SearchRecipeFailure(error.errorMessage));
       },
           (data) {

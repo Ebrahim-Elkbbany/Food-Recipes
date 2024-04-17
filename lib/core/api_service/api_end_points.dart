@@ -3,4 +3,5 @@ class ApiEndPoints{
   static String recipeByCategory = 'filter.php';
   static String allCategories = 'categories.php';
   static String searchRecipes = 'search.php';
+  static String detailsRecipe = 'lookup.php';
 }

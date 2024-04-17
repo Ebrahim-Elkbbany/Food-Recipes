@@ -13,6 +13,9 @@ import 'package:food_recipes/features/auth/presentation/views/sign_up_view.dart'
 import 'package:food_recipes/features/category/data/repo/category_repo_impl.dart';
 import 'package:food_recipes/features/category/presentation/manager/category_cubit/category_cubit.dart';
 import 'package:food_recipes/features/category/presentation/views/category_reicpes_view.dart';
+import 'package:food_recipes/features/details/data/repo/details_repo_impl.dart';
+import 'package:food_recipes/features/details/presentation/manager/details_cubit.dart';
+import 'package:food_recipes/features/details/presentation/view/food_recipe_details_view.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
 import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
@@ -29,13 +32,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => onBoarding != null
               ? (FirebaseAuth.instance.currentUser != null &&
-              FirebaseAuth.instance.currentUser!.emailVerified)
-              ? const LayoutView()
-              : BlocProvider(
-            create: (context) =>
-                LoginCubit(getIt.get<LoginRepoImpl>()),
-            child: const LoginView(),
-          )
+                      FirebaseAuth.instance.currentUser!.emailVerified)
+                  ? const LayoutView()
+                  : BlocProvider(
+                      create: (context) =>
+                          LoginCubit(getIt.get<LoginRepoImpl>()),
+                      child: const LoginView(),
+                    )
               : const OnboardingView(),
         );
       case Routes.onBoardingScreen:
@@ -61,24 +64,34 @@ class AppRouter {
           builder: (context) => const LayoutView(),
         );
       case Routes.newRecipesView:
-        return  MaterialPageRoute(
+        return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+            create: (context) =>
+                NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
             child: const NewRecipesView(),
           ),
         );
       case Routes.searchRecipesView:
-        return  MaterialPageRoute(
+        return MaterialPageRoute(
           builder: (context) => const SearchRecipesView(),
         );
       case Routes.categoryRecipesView:
         final arguments = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => CategoryCubit(getIt.get<CategoryRepoImpl>())..getCategoryRecipes(arguments),
+            create: (context) => CategoryCubit(getIt.get<CategoryRepoImpl>())
+              ..getCategoryRecipes(arguments),
             child: CategoryRecipesView(categoryName: arguments),
           ),
-        );  
+        );
+      case Routes.foodRecipesDetailsView:
+        final arguments = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => DetailsCubit(getIt.get<DetailsRepoImpl>())..getFoodRecipeDetailsModel(id: arguments),
+            child:  FoodRecipesDetailsView(id: arguments,)
+          ),
+        );
       default:
         return null;
     }
