@@ -5,6 +5,7 @@ import 'package:food_recipes/features/home/presentation/views/widgets/home_view_
 import 'package:food_recipes/features/home/presentation/views/widgets/home_view_hello_search_sec.dart';
 import 'package:food_recipes/features/home/presentation/views/widgets/home_view_tab_bar_list_view_sec.dart';
 
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
@@ -14,7 +15,7 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(left: 20.w),
-          child: Column(
+          child:Column(
             children: [
               verticalSpacer(20),
               const HomeViewHalloSearchSec(),

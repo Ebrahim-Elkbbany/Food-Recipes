@@ -19,7 +19,7 @@ ThemeData lightTheme = ThemeData(
       backgroundColor: AppColors.kWhiteColor,
       selectedItemColor: AppColors.kPrimaryColor,
       elevation: 10,
-      unselectedItemColor: AppColors.kWhiteColorD9,
+      unselectedItemColor: AppColors.kBlackColor,
     ),
     appBarTheme: AppBarTheme(
       titleTextStyle: FontStyles.font18Black18SemiBold,

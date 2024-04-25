@@ -7,8 +7,10 @@ import 'package:food_recipes/core/widgets/custom_error_widget.dart';
 import 'package:food_recipes/core/widgets/custom_shimmer_for_loading.dart';
 import 'package:food_recipes/features/category/presentation/manager/category_cubit/category_cubit.dart';
 
+
 class CategoryRecipesView extends StatelessWidget {
   const CategoryRecipesView({super.key, required this.categoryName,});
+
   final String categoryName;
 
   @override

@@ -9,7 +9,7 @@ class ThemeCubit extends Cubit<ThemeState> {
     return BlocProvider.of(context);
   }
 
-  bool isLightTheme =  false;
+  bool isLightTheme =  true;
 
   void changeTheme(){
     isLightTheme =!isLightTheme;
