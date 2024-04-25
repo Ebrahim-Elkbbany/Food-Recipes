@@ -16,6 +16,8 @@ import 'package:food_recipes/features/category/presentation/views/category_reicp
 import 'package:food_recipes/features/details/data/repo/details_repo_impl.dart';
 import 'package:food_recipes/features/details/presentation/manager/details_cubit.dart';
 import 'package:food_recipes/features/details/presentation/view/food_recipe_details_view.dart';
+import 'package:food_recipes/features/favourites/data/repos/favourites_recipe_repo.dart';
+import 'package:food_recipes/features/favourites/presentation/manager/favourites_cubit.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
 import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
@@ -65,9 +67,18 @@ class AppRouter {
         );
       case Routes.newRecipesView:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    NewRecipesCubit(getIt.get<HomeRepoImpl>())..getNewRecipes(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    FavouritesCubit(getIt.get<FavouritesRecipeRepo>())
+                      ..getAllFavourites(),
+              ),
+            ],
             child: const NewRecipesView(),
           ),
         );
@@ -78,18 +89,40 @@ class AppRouter {
       case Routes.categoryRecipesView:
         final arguments = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => CategoryCubit(getIt.get<CategoryRepoImpl>())
-              ..getCategoryRecipes(arguments),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    CategoryCubit(getIt.get<CategoryRepoImpl>())
+                      ..getCategoryRecipes(arguments),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    FavouritesCubit(getIt.get<FavouritesRecipeRepo>())
+                      ..getAllFavourites(),
+              ),
+            ],
             child: CategoryRecipesView(categoryName: arguments),
           ),
         );
       case Routes.foodRecipesDetailsView:
         final arguments = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => DetailsCubit(getIt.get<DetailsRepoImpl>())..getFoodRecipeDetailsModel(id: arguments),
-            child:  FoodRecipesDetailsView(id: arguments,)
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => DetailsCubit(getIt.get<DetailsRepoImpl>())
+                  ..getFoodRecipeDetailsModel(id: arguments),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    FavouritesCubit(getIt.get<FavouritesRecipeRepo>())
+                      ..getAllFavourites(),
+              ),
+            ],
+            child: FoodRecipesDetailsView(
+              id: arguments,
+            ),
           ),
         );
       default:

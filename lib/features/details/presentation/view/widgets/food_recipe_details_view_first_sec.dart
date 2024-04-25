@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/di/dependency_injection.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/theming/font_weight_helper.dart';
 import 'package:food_recipes/core/widgets/custom_cached_network_image.dart';
 import 'package:food_recipes/features/details/data/models/food_recipe_details_model.dart';
+import 'package:food_recipes/features/favourites/data/models/favourites_model.dart';
+import 'package:food_recipes/features/favourites/data/repos/favourites_recipe_repo.dart';
+import 'package:food_recipes/features/favourites/presentation/manager/favourites_cubit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FoodRecipeDetailsFirstSec extends StatelessWidget {
@@ -66,7 +71,31 @@ class FoodRecipeDetailsFirstSec extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Icon(Icons.bookmark, color: AppColors.kPrimaryColor),
+                  BlocProvider(
+                    create: (context) =>
+                        FavouritesCubit(getIt.get<FavouritesRecipeRepo>())..getAllFavourites(),
+                    child: BlocBuilder<FavouritesCubit, FavouritesState>(
+                      builder: (context, state) {
+                        var cubit = FavouritesCubit.get(context);
+                        return InkWell(
+                          onTap: () {
+                            cubit.addToFavorites(FavouritesRecipeModel(
+                              strMeal: mealDetails.strMeal,
+                              strMealThumb: mealDetails.strMealThumb,
+                              idMeal: mealDetails.idMeal,
+                            ));
+                          },
+                          child: Icon(
+                            cubit.isFavourites(mealDetails.idMeal)
+                                ? Icons.bookmark
+                                : Icons.bookmark_outline,
+                            color: AppColors.kPrimaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                  )
+
                 ],
               ),
               verticalSpacer(5),
