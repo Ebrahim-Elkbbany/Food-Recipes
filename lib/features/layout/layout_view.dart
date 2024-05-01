@@ -10,7 +10,7 @@ import 'package:food_recipes/features/favourites/presentation/manager/favourites
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
 import 'package:food_recipes/features/home/presentation/manager/area_category_and_recipes_cubit/area_category_and_recipes_cubit.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 import 'manager/layout_cubit.dart';
 import 'package:food_recipes/features/home/presentation/manager/banners_cubit/banners_cubit.dart';
 
@@ -26,6 +26,7 @@ class LayoutView extends StatelessWidget {
           )
         : SystemUiOverlayStyle.light
             .copyWith(statusBarColor: AppColors.kBlackColor));
+    ThemeCubit.get(context).openNotification(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(

@@ -4,7 +4,7 @@ import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/custom_list_tile_item.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class DetailsViewIngredientSec extends StatelessWidget {
   const DetailsViewIngredientSec(

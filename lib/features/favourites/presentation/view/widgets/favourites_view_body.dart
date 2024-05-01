@@ -9,7 +9,7 @@ import 'package:food_recipes/features/favourites/data/repos/favourites_recipe_re
 import 'package:food_recipes/features/favourites/presentation/manager/favourites_cubit.dart';
 import 'package:food_recipes/features/favourites/presentation/view/widgets/favourites_recipe_card.dart';
 import 'package:food_recipes/features/favourites/presentation/view/widgets/shimmer_list_view.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class FavouritesViewBody extends StatelessWidget {
   const FavouritesViewBody({super.key});

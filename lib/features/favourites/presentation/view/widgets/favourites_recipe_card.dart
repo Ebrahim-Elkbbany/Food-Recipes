@@ -5,7 +5,6 @@ import 'package:food_recipes/core/routing/routes.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/features/favourites/presentation/manager/favourites_cubit.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 import '../../../data/models/favourites_model.dart';
 
 class FavouritesRecipeCard extends StatelessWidget {
@@ -15,7 +14,6 @@ class FavouritesRecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme = ThemeCubit.get(context).isLightTheme;
 
     return GestureDetector(
       onTap: () {

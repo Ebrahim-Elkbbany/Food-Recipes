@@ -12,7 +12,7 @@ import 'package:food_recipes/core/widgets/custom_shimmer_for_loading.dart';
 import 'package:food_recipes/core/widgets/custom_text_button.dart';
 import 'package:food_recipes/core/widgets/app_grid_view_card.dart';
 import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubit/new_recipes_cubit.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class HomeViewNewRecipesSec extends StatelessWidget {
   const HomeViewNewRecipesSec({super.key});
@@ -57,11 +57,11 @@ class HomeViewNewRecipesSec extends StatelessWidget {
                     itemCount: 4,
                     padding: EdgeInsets.only(top: 20.h, right: 20.w),
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 115 / 150,
+                         SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: ScreenUtil().screenWidth > 600 ? 4 : 2,
+                          mainAxisSpacing: ScreenUtil().setHeight(20),
+                          crossAxisSpacing: ScreenUtil().setWidth(10),
+                          childAspectRatio: 110 / 150,
                     ),
                     itemBuilder: (context, index) => state is NewRecipesSuccess
                         ? AppGridViewCard(

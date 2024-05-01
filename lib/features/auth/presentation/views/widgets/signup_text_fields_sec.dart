@@ -5,7 +5,7 @@ import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/app_text_form_field.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import '../../../../profile/presentation/manager/theme_cubit/theme_cubit.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 
 class SignupTextFieldSec extends StatelessWidget {
@@ -34,6 +34,26 @@ class SignupTextFieldSec extends StatelessWidget {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter password';
+              }
+            },
+          ),
+          verticalSpacer(20),
+          Text(
+            'Phone',
+            style: FontStyles.font14Black12Regular.copyWith(
+                color: isLightTheme? null :AppColors.kWhiteColor
+            ),
+          ),
+          verticalSpacer(5),
+          AppTextFormField(
+            controller:  context.read<SignupCubit>().phone,
+            hintText: 'Enter Phone Number',
+            keyboardType: TextInputType.phone,
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isPhoneNumberValid(value)) {
+                return 'Please enter a valid number';
               }
             },
           ),

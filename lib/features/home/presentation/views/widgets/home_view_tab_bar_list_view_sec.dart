@@ -8,7 +8,7 @@ import 'package:food_recipes/core/widgets/custom_shimmer_for_loading.dart';
 import 'package:food_recipes/features/home/presentation/manager/area_category_and_recipes_cubit/area_category_and_recipes_cubit.dart';
 import 'package:food_recipes/core/widgets/app_grid_view_card.dart';
 import 'package:food_recipes/features/home/presentation/views/widgets/tab_bar_container.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class HomeViewTabBarListViewSec extends StatelessWidget {
   const HomeViewTabBarListViewSec({super.key});
@@ -71,7 +71,7 @@ class HomeViewTabBarListViewSec extends StatelessWidget {
                 )
               else
                 SizedBox(
-                  height: 250.h,
+                  height: 240.h,
                   child: ListView.separated(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
