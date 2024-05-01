@@ -6,7 +6,7 @@ import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/widgets/app_text_form_field.dart';
 import 'package:food_recipes/features/auth/presentation/manager/login_cubit/login_cubit.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import '../../../../profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class LoginTextFieldSec extends StatelessWidget {
   const LoginTextFieldSec({super.key});

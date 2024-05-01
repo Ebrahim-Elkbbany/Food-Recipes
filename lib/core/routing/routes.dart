@@ -9,4 +9,7 @@ class Routes {
   static const String categoryRecipesView = '/CategoryRecipesView';
   static const String searchRecipesView = '/SearchRecipesView';
   static const String foodRecipesDetailsView = '/foodRecipesDetailsView';
+  static const String accountEditingViewView = '/accountEditingView';
+  static const String themeView = '/themeView';
+  static const String languageView = '/languageView';
 }

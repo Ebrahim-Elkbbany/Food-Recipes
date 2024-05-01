@@ -9,7 +9,7 @@ import 'package:food_recipes/features/auth/presentation/views/widgets/login_forg
 import 'package:food_recipes/features/auth/presentation/views/widgets/login_text_fields_sec.dart';
 import 'package:food_recipes/features/auth/presentation/views/widgets/login_with_social.dart';
 
-import '../../../onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -17,6 +17,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLightTheme =ThemeCubit.get(context).isLightTheme;
+    ThemeCubit.get(context).getLocalNotification(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

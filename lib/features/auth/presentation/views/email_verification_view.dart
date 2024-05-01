@@ -4,12 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/core/helpers/extensions.dart';
 import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/routing/routes.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
-import '../../../onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key, required this.email});
@@ -48,6 +49,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         ).show();
       });
       timer?.cancel();
+      await CacheHelper.saveData(key: 'token', value: FirebaseAuth.instance.currentUser!.uid);
       SchedulerBinding.instance.addPostFrameCallback((_) {
         context.pushNamedAndRemoveUntil(Routes.layoutView, predicate: (route) => false,);
       });

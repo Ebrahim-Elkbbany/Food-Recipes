@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+lib/core/notification/notification_api.dart
 
 # IntelliJ related
 *.iml

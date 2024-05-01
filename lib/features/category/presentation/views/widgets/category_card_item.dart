@@ -5,7 +5,7 @@ import 'package:food_recipes/core/helpers/responsive_spacing.dart';
 import 'package:food_recipes/core/theming/app_colors.dart';
 import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/features/category/data/models/all_categories_model.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class CategoryCardItem extends StatelessWidget {
   const CategoryCardItem({super.key,   required this.category});

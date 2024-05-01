@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +24,16 @@ import 'package:food_recipes/features/home/presentation/manager/new_recipes_cubi
 import 'package:food_recipes/features/home/presentation/views/new_recipes_view.dart';
 import 'package:food_recipes/features/onboarding/presentation/onboarding_view.dart';
 import 'package:food_recipes/features/layout/layout_view.dart';
+import 'package:food_recipes/features/profile/data/repo/profile_repo.dart';
+import 'package:food_recipes/features/profile/presentation/manager/account_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/views/account_editing_view.dart';
+import 'package:food_recipes/features/profile/presentation/views/language_view.dart';
+import 'package:food_recipes/features/profile/presentation/views/theme_view.dart';
 import 'package:food_recipes/features/search/presentation/views/search_recipes_view.dart';
 
 class AppRouter {
   dynamic onBoarding = CacheHelper.getData(key: 'onBoarding');
+  var token = CacheHelper.getData(key: 'token');
 
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -34,7 +41,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => onBoarding != null
               ? (FirebaseAuth.instance.currentUser != null &&
-                      FirebaseAuth.instance.currentUser!.emailVerified)
+                      FirebaseAuth.instance.currentUser!.emailVerified &&
+                      token != null)
                   ? const LayoutView()
                   : BlocProvider(
                       create: (context) =>
@@ -125,6 +133,23 @@ class AppRouter {
             ),
           ),
         );
+      case Routes.accountEditingViewView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                AccountCubit(getIt.get<ProfileRepo>())..getUserData(),
+            child: const AccountEditingView(),
+          ),
+        );
+      case Routes.themeView:
+        return MaterialPageRoute(
+          builder: (context) => const ThemeView(),
+        );
+      case Routes.languageView:
+        return MaterialPageRoute(
+          builder: (context) => const LanguageView(),
+        );
+
       default:
         return null;
     }

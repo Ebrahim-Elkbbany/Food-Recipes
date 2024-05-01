@@ -9,6 +9,8 @@ import 'package:food_recipes/features/details/data/repo/details_repo_impl.dart';
 import 'package:food_recipes/features/favourites/data/repos/favourites_recipe_repo.dart';
 import 'package:food_recipes/features/favourites/data/repos/favourites_recipe_repo_imp.dart';
 import 'package:food_recipes/features/home/data/repos/home_repo_impl.dart';
+import 'package:food_recipes/features/profile/data/repo/profile_repo.dart';
+import 'package:food_recipes/features/profile/data/repo/profile_repo_impl.dart';
 import 'package:food_recipes/features/search/data/repo/search_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
@@ -53,5 +55,9 @@ Future<void> setUpGetIt() async {
   );
   getIt.registerSingleton<FavouritesRecipeRepo>(
       FavouritesRecipeRepoImp(),
+  );
+
+  getIt.registerSingleton<ProfileRepo>(
+      ProfileRepoImp(),
   );
 }

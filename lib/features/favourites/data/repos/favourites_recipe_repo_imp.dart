@@ -21,9 +21,11 @@ class FavouritesRecipeRepoImp extends FavouritesRecipeRepo {
       DocumentSnapshot snapshot = await docRef.get();
       if (snapshot.exists) {
         await docRef.delete();
+        fetchFavourites();
         return (right(null));
       } else {
         await docRef.set(favouritesRecipeModel.toJson());
+        fetchFavourites();
         return (right(null));
       }
     } catch (error) {

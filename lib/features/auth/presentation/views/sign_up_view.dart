@@ -13,7 +13,7 @@ import 'package:food_recipes/features/auth/presentation/manager/signup_cubit/sig
 import 'package:food_recipes/features/auth/presentation/views/widgets/signup_bloc_listner.dart';
 import 'package:food_recipes/features/auth/presentation/views/widgets/signup_text_fields_sec.dart';
 import 'package:food_recipes/features/auth/presentation/views/widgets/signup_with_social_sec.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -81,6 +81,7 @@ class SignUpView extends StatelessWidget {
                   ),
                 ],
               ),
+              verticalSpacer(20),
               const SignupBlocListener(),
             ],
           ),

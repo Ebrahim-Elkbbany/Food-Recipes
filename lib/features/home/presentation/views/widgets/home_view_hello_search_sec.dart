@@ -12,7 +12,7 @@ import 'package:food_recipes/core/theming/font_weight_helper.dart';
 import 'package:food_recipes/core/widgets/app_text_form_field.dart';
 import 'package:food_recipes/core/widgets/custom_cached_network_image.dart';
 import 'package:food_recipes/features/home/presentation/manager/banners_cubit/banners_cubit.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeViewHalloSearchSec extends StatelessWidget {
@@ -20,7 +20,9 @@ class HomeViewHalloSearchSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme = ThemeCubit.get(context).isLightTheme;
+    bool isLightTheme = ThemeCubit
+        .get(context)
+        .isLightTheme;
     User? user = FirebaseAuth.instance.currentUser;
     return Column(
       children: [
@@ -49,13 +51,12 @@ class HomeViewHalloSearchSec extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            Image.network(
-              user.photoURL ??
-                  'https://cdn-icons-png.flaticon.com/512/149/149071.png',
-              height: 40,
-              width: 40,
-              fit: BoxFit.fill,
-            ),
+            CircleAvatar(
+              radius: 20.r,
+              backgroundImage: NetworkImage(
+               user.photoURL ??
+                    'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+              ),),
             horizontalSpacer(20)
           ],
         ),
@@ -83,39 +84,39 @@ class HomeViewHalloSearchSec extends StatelessWidget {
               padding: EdgeInsets.only(right: 20.w),
               child: state is! BannersLoading
                   ? CarouselSlider(
-                      items: cubit.bannersImageUrls
-                          .where((url) => url.isNotEmpty)
-                          .toList()
-                          .map((e) {
-                        return CustomCachedNetworkImage(
-                            imageUrl: e, width: double.infinity, height: 180.h);
-                      }).toList(),
-                      options: CarouselOptions(
-                        height: 180.h,
-                        initialPage: 0,
-                        viewportFraction: 1.0,
-                        enableInfiniteScroll: true,
-                        reverse: false,
-                        autoPlay: true,
-                        autoPlayInterval: const Duration(seconds: 3),
-                        autoPlayAnimationDuration: const Duration(seconds: 1),
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    )
+                items: cubit.bannersImageUrls
+                    .where((url) => url.isNotEmpty)
+                    .toList()
+                    .map((e) {
+                  return CustomCachedNetworkImage(
+                      imageUrl: e, width: double.infinity, height: 180.h);
+                }).toList(),
+                options: CarouselOptions(
+                  height: 180.h,
+                  initialPage: 0,
+                  viewportFraction: 1.0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(seconds: 1),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  scrollDirection: Axis.horizontal,
+                ),
+              )
                   : Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: Container(
-                        height: 180.h,
-                        width: double.infinity,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        decoration: BoxDecoration(
-                          color: AppColors.kWhiteColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  height: 180.h,
+                  width: double.infinity,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                    color: AppColors.kWhiteColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
             );
           },
         ),

@@ -7,7 +7,8 @@ import 'package:food_recipes/core/theming/font_styles.dart';
 import 'package:food_recipes/core/theming/font_weight_helper.dart';
 import 'package:food_recipes/core/widgets/custom_text_button.dart';
 
-import '../../../../onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import '../../../../profile/presentation/manager/theme_cubit/theme_cubit.dart';
+
 
 class LoginDontHaveAccountSec extends StatelessWidget {
   const LoginDontHaveAccountSec({super.key});

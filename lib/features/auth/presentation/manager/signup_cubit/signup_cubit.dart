@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/features/auth/data/repos/signup_repo.dart';
 import 'package:food_recipes/features/auth/presentation/views/email_verification_view.dart';
 
@@ -16,6 +17,7 @@ class SignupCubit extends Cubit<SignupState> {
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
 
   Future signupWithEmail(BuildContext context) async {
     emit(SignupLoading());
@@ -23,6 +25,7 @@ class SignupCubit extends Cubit<SignupState> {
       email: email.text,
       password: password.text,
       name: name.text,
+      phone: phone.text,
     );
     response.fold((error) {
       emit(SignupFailure(error));
@@ -47,6 +50,7 @@ class SignupCubit extends Cubit<SignupState> {
     response.fold((error) {
       emit(SignupFailure(error));
     }, (userCredential) {
+      CacheHelper.saveData(key: 'token', value: userCredential.uid);
       emit(SignupSuccess(userCredential));
     });
   }
@@ -63,6 +67,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   @override
   Future<void> close() {
+    phone.dispose();
     email.dispose();
     password.dispose();
     confirmPassword.dispose();

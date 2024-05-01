@@ -6,7 +6,7 @@ import 'package:food_recipes/features/details/presentation/manager/details_cubit
 import 'package:food_recipes/features/details/presentation/view/widgets/food_recipe_details_view_first_sec.dart';
 import 'package:food_recipes/features/details/presentation/view/widgets/food_recipe_details_view_instrutions_sec.dart';
 import 'package:food_recipes/features/details/presentation/view/widgets/food_reipe_details_view_ingredient_sec.dart';
-import 'package:food_recipes/features/onboarding/presentation/manager/theme_cubit/theme_cubit.dart';
+import 'package:food_recipes/features/profile/presentation/manager/theme_cubit/theme_cubit.dart';
 
 class FoodRecipesDetailsView extends StatelessWidget {
   const FoodRecipesDetailsView({super.key, required this.id});

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/features/auth/data/repos/login_repo.dart';
 part 'login_state.dart';
 
@@ -19,6 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
     response.fold((error) {
       emit(LoginFailure(error.toString()));
     }, (userCredential) {
+      CacheHelper.saveData(key: 'token', value: userCredential.user!.uid);
       emit(LoginSuccess(userCredential.user!));
     });
   }
@@ -32,6 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
       }
       emit(LoginFailure(error));
     }, (userCredential) {
+      CacheHelper.saveData(key: 'token', value: userCredential.uid);
       emit(LoginSuccess(userCredential));
     },);
   }
