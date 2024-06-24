@@ -1,4 +1,4 @@
-![18](https://github.com/Ebrahim-Elkbbany/Food-Recipes/assets/136932497/aec0fed7-75df-4946-9d88-ccbb1019aa1c)# Food Recipes App
+# Food Recipes App
 
 
 ![mockup](https://github.com/Ebrahim-Elkbbany/Food-Recipes/assets/136932497/16cd21c1-3ee3-41d6-a7a3-f9b97a45830e)
