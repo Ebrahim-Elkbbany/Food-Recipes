@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_recipes/bloc_observer.dart';
 import 'package:food_recipes/core/di/dependency_injection.dart';
+import 'package:food_recipes/core/firebase_notofications/firebase_notifications.dart';
 import 'package:food_recipes/core/helpers/cache_helper.dart';
 import 'package:food_recipes/core/notification/backgrond_messaging_notification.dart';
 import 'package:food_recipes/core/routing/app_router.dart';
@@ -19,13 +20,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  await FirebaseNotifications().initNotifications();
+
+  // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   Bloc.observer = AppBlocObserver();
   setUpGetIt();
   await ScreenUtil.ensureScreenSize();
   runApp(const FoodRecipesApp());
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class FoodRecipesApp extends StatelessWidget {
   const FoodRecipesApp({super.key});
@@ -45,6 +50,7 @@ class FoodRecipesApp extends StatelessWidget {
                   .get(context)
                   .isLightTheme ? lightTheme : darkTheme,
               initialRoute: Routes.initialScreen,
+              navigatorKey: navigatorKey,
               onGenerateRoute: AppRouter().generateRoute,
             );
           },
